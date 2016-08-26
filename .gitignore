@@ -6,3 +6,6 @@ spec/reports/
 coverage/
 **.tmp_*
 doc/
+.ruby-gemset
+.ruby-version
+*.iml
