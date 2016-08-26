@@ -31,11 +31,11 @@ describe Dotpay::Response do
 
     subject { response.authorized? }
 
-    it { should be_true }
+    it { should be_truthy }
 
     context "invalid pin" do
       before { Dotpay.configuration.stub(:pin).and_return('badpin') }
-      it { should be_false }
+      it { is_expected.to be_falsey }
     end
   end
 
@@ -62,7 +62,7 @@ describe Dotpay::Response do
 
     subject { response.status_done? }
 
-    it { should be_true }
+    it { is_expected.to be_truthy }
 
     context "not done" do
       let(:params) do
@@ -83,7 +83,7 @@ describe Dotpay::Response do
           "md5"=>"a4d146472f99f123d0960732dcfd4be8"}
       end
 
-      it { should be_false }
+      it { is_expected.to be_falsey }
     end
 
     describe "#status_rejected?" do
@@ -109,7 +109,7 @@ describe Dotpay::Response do
 
       subject { response.status_rejected? }
 
-      it { should be_true }
+      it { is_expected.to be_truthy }
 
       context "not rejected" do
         let(:params) do
@@ -130,7 +130,7 @@ describe Dotpay::Response do
             "md5"=>"a4d146472f99f123d0960732dcfd4be8"}
         end
 
-        it { should be_false }
+        it { is_expected.to be_falsey }
       end
     end
   end
